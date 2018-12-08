@@ -79,6 +79,8 @@ result1['endemic_status']=""
 
 result1=result1.drop(columns=['S.No','Scientific Name:','Assessment Information [top]','Annotations:','Population [top]', 'Habitat and Ecology [top]','Threats [top]','Conservation Actions [top]','Geographic Range [top]','Map Status'])
 
+result1.to_csv("result", sep='\t', encoding='utf-8')
+
 if len(result1.columns==60):
 	print "job success"
 
