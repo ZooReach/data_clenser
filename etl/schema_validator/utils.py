@@ -121,6 +121,5 @@ def form_data_frame(named_tuples):
 
 
 def validate_print_result(formed_data, num_rows, path):
-    return form_data_frame(formed_data).to_csv(os.path.join(path, "result.csv"),
-                                               encoding='utf-8') if validate_dataframe(formed_data,
-                                                                                       num_rows) else "error"
+    return form_data_frame(formed_data).to_csv(os.path.join(path, "result.csv"), encoding='utf-8',
+                                               index=False) if validate_dataframe(formed_data, num_rows) else "error"
