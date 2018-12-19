@@ -74,6 +74,8 @@ conservation_actions_fields = ('conservation_actions',
 bibliography_fields = ('bibliography',)
 citation_fields = ('citation',)
 
+category_level_fields = ('category_level1','category_level2')
+
 taxanomy = namedtuple('taxanomy', taxanomy_fields, defaults=(None,) * len(taxanomy_fields), rename=True)
 assessment_information = namedtuple('assessment_information', assessment_information_fields,
                                     defaults=(None,) * len(assessment_information_fields))
@@ -89,9 +91,10 @@ conservation_actions = namedtuple('conservation_actions', conservation_actions_f
                                   defaults=(None,) * len(conservation_actions_fields))
 bibliography = namedtuple('bibliography', bibliography_fields, defaults=(None,) * len(bibliography_fields))
 citation = namedtuple('citation', citation_fields, defaults=(None,) * len(citation_fields))
+category_level = namedtuple('category_level',category_level_fields, defaults=(None,) * len(category_level_fields))
 
 first_level_header = [taxanomy, assessment_information, geographic_range, population, habitat_and_ecology,
-                      threats_and_major_threats, stresses, conservation_actions, bibliography]
+                      threats_and_major_threats, stresses, conservation_actions, bibliography,category_level]
 
 
 def validate_dataframe(named_tuples, num):
