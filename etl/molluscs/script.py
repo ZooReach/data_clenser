@@ -21,6 +21,7 @@ taxanomy = utils.taxanomy(
 assessment_information = utils.assessment_information(
     redlist_category=df['Red List Category & Criteria:'],
     date_assessed=df['Year Assessed:'],
+    year_published=df['Year Assessed:'],
     contributers=df['Contributors'],
     reviewers=df['Reviewer/s:'],
     assessors=df['Assessor/s:'],
@@ -57,4 +58,4 @@ citation = utils.citation(
 formed_data = [taxanomy, assessment_information, geographic_range, population, habit_and_ecology, threats,
                conservation_actions, bibliography, citation]
 
-utils.validate_print_result(formed_data=formed_data, num_rows=32, path=dir_path)
+utils.validate_print_result(formed_data=formed_data, num_rows=33, path=dir_path)

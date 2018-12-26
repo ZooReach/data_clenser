@@ -19,9 +19,9 @@ taxanomy = utils.taxanomy(
     species=df['Genus + Species + Sub species + Authority'].str.split().apply(lambda x: x[1]))
 
 assessment_information = utils.assessment_information(
-    redlist_category=df['2001 Red List (Ver. 2.3)'],
+    redlist_category=df['Status with Criteria (South Asia)'],
     # date_assessed=df['Year Assessed:'],
-    contributers=df['Compilers'],
+    # contributers=df['Compilers'],
     reviewers=df['Reviewers'],
     # assessors=df['Assessor/s:'],
     justification=df['Justification for change'],
@@ -30,12 +30,15 @@ assessment_information = utils.assessment_information(
 
 geographic_range = utils.geographic_range(
     # range_description=df['Range Description:'],
-    # countries_occurence=df['Countries:'],
+    countries_occurence=df['Global Distribution'],
+    aoo=df['Area of Occupancy'],
+    eoo=df['Extent of Occurrence'],
+    location=df['Locations/Subpopulations'],
     endemic_status=df['Endemic status (Regional)'],
     elevation=df['Elevation'])
 
 population = utils.population(
-    population=df['Population'],
+    population=df['Total population'],
     current_population_trend=df['Population trend'],
     generation_time=df['Generation time'],
     mature_individuals=df['Mature individuals'],
@@ -45,12 +48,14 @@ habit_and_ecology = utils.habitat_and_ecology(
     habitat_and_ecology=df['Habitat'],
     habit=df['Habit'],
     niche=df['Niche'],
+    habitat_status=df['Habitat status'],
     # systems=df['Systems:'],
     # list_of_habitats=df['List of Habitats:']
 )
 
 threats = utils.threats_and_major_threats(
     threats_and_major_threats=df['Threats'],
+    trade=df['Trade']
     # list_of_threats=df['List of Threats:']
 )
 
@@ -68,4 +73,4 @@ citation = utils.citation(
 formed_data = [taxanomy, assessment_information, geographic_range, population, habit_and_ecology, threats,
                conservation_actions, bibliography, citation]
 
-utils.validate_print_result(formed_data=formed_data, num_rows=26, path=dir_path)
+utils.validate_print_result(formed_data=formed_data, num_rows=31, path=dir_path)
