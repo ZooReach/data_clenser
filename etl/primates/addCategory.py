@@ -19,6 +19,6 @@ data = {
 for hierarchy in data.keys():
     group_level_data = data[hierarchy]
     for familyName in group_level_data.keys():
-        df.loc[df["genus"].str.upper() == familyName.upper(), "category_level1"] = hierarchy
-        df.loc[df["genus"].str.upper() == familyName.upper(), "category_level2"] = group_level_data[familyName]
+        df.loc[df["genus         "].str.upper() == familyName.upper(), "category_level1"] = hierarchy
+        df.loc[df["genus         "].str.upper() == familyName.upper(), "category_level2"] = group_level_data[familyName]
 df.to_csv("test.csv", encoding='utf-8', index=False)
