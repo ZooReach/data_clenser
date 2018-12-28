@@ -1,16 +1,17 @@
 import pandas as pd
 from ..schema_validator import utils
 import os
-
+from itertools import chain
 dir_path = os.path.join(os.path.dirname(__file__))
 df = pd.read_excel(os.path.join(dir_path, 'chiropetra.xlsx'))
 
 taxanomy = utils.taxanomy(
     family=df['Family'],
-    species_authority=df['Genus + Species + Sub species + Authority'].str.split().apply(lambda x: x[:-1]),
+    species_authority=df['Genus + Species + Sub species + Authority'].str.split().apply(
+        lambda x: ''.join(chain.from_iterable(x[2:]))),
     common_name=df['Common names'],
     synonyms=df['Synonyms'],
-    # infra_specific_taxa_assessed=df['Genus + Species + Sub species + Authority'].str.split().apply(lambda x: x[2]),
+    # infra_specific_taxa_assessed=df['Genus + Species + Sub species + Authority'].str.split('  ').apply(lambda x: x[2]),
     genus=df['Genus + Species + Sub species + Authority'].str.split().apply(lambda x: x[0]),
     species=df['Genus + Species + Sub species + Authority'].str.split().apply(lambda x: x[1]))
 
@@ -54,8 +55,10 @@ threats = utils.threats_and_major_threats(
 )
 
 conservation_actions = utils.conservation_actions(
-    conservation_actions=df['Microchiroptera Action Plan (Global)'].str.cat(
-        df['Old World Fruit Bats Action Plan (Global)']).str.cat(df['CITES']),
+    conservation_actions=df['Microchiroptera Action Plan (Global)'].fillna('').astype(str).str.cat(df['CITES'],
+                                                                                                   sep=' CITES: ',
+                                                                                                   na_rep='').str.cat(
+        df['Old World Fruit Bats Action Plan (Global)'], sep=' OWFBAP: ', na_rep=''),
     presence_in_protected_areas=df['Known presence in Protected Areas'],
     conservation_needed=df['Management'].str.cat(df['Captive breeding']),
     research_needed=df['Research']
