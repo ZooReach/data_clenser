@@ -1,0 +1,11 @@
+{
+  "type": {
+    "molluscs": {
+      "Name": "Molluscs",
+      "image": "images/placeholder.svg",
+      "Description": "description",
+      "Kingdom": "kingdom",
+      "resource_id": "005b14a4-ae27-4af6-90a7-6208cc78ef25"
+      }
+    }
+}
