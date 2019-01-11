@@ -4,6 +4,7 @@ from collections import namedtuple
 from itertools import chain
 import functools
 import os
+import pdb;
 
 taxanomy_fields = ('kingdom',
                    'phylum',
@@ -110,6 +111,7 @@ def validate_dataframe(named_tuples, num):
 
 
 def form_data_frame(named_tuples):
+    pdb.set_trace()
     column_header = list(chain.from_iterable(
         map(lambda fields: fields, map(lambda header: map(lambda field: field, header._fields), first_level_header))))
     df = pd.DataFrame(columns=column_header)
